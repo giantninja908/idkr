@@ -25,6 +25,10 @@ const config = new Store();
 /** @type {string} */
 let userscriptsDirConfig = (config.get("userscriptsPath", ""));
 const userscriptsDir = PathUtils.isValidPath(userscriptsDirConfig) ? userscriptsDirConfig : path.join(app.getPath("documents"), "idkr/scripts");
+
+/** @type {string} */
+let cssDirConfig = (config.get("cssPath", ""));
+const cssDir = PathUtils.isValidPath(cssDirConfig) ? cssDirConfig : path.join(app.getPath("documents"), "idkr/css");
 cliSwitches(app, config);
 
 if (process.platform === "win32"){
@@ -61,8 +65,9 @@ let init = function(){
 	IpcLoader.initRpc(config);
 
 	app.once("ready", async() => {
-		await PathUtils.ensureDirs(BrowserLoader.swapDir, userscriptsDir);
-		protocol.registerFileProtocol("idkr-swap", (request, callback) => callback(decodeURI(request.url.replace(/^idkr-swap:/, ""))));
+		// await PathUtils.ensureDirs(BrowserLoader.swapDir, userscriptsDir, cssDir);
+		// await PathUtils.ensureDirs(userscriptsDir, cssDir);
+		// protocol.registerFileProtocol("idkr-swap", (request, callback) => callback(decodeURI(request.url.replace(/^idkr-swap:/, ""))));
 		app.on("second-instance", (e, _argv) => {
 			let instanceArgv = yargs.parse(_argv);
 			console.log("Second instance: " + _argv);
