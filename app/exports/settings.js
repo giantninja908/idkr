@@ -173,5 +173,42 @@ module.exports = {
 		html(){
 			return UtilManager.instance.clientUtils.genCSettingsHTML(this);
 		}
+	},
+
+	enableCss: {
+		name: 'Enable custom CSS',
+		id: 'enableCSS',
+		cat: 'CSS',
+		type: 'checkbox',
+		val: true,
+		needsRestart: true,
+		html: function () {
+			return UtilManager.instance.clientUtils.genCSettingsHTML(this);
+		}
+	},
+
+
+	cssPath: {
+		name: 'CSS Path',
+		id: 'cssPath',
+		cat: 'CSS',
+		type: 'text',
+		val: '',
+		placeholder: 'Custom CSS Path',
+		needsRestart: true,
+		html: function () {
+			return UtilManager.instance.clientUtils.genCSettingsHTML(this);
+		}
+	},
+	cssLnch: {
+		name: 'Launch',
+		id: 'cssMgrBtn',
+		cat: 'CSS',
+		type: 'button',
+		val: '',
+		click: `window["${UtilManager.instance._utilKey}"].openCSS()`,
+		html: function () {
+			return UtilManager.instance.clientUtils.genCSettingsHTML(this);
+		}
 	}
 };
